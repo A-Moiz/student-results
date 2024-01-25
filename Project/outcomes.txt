@@ -1,4 +1,3 @@
 Progression outcomes:
 
 Progress: 120, 0, 0
-Exclude: 0, 0, 120
