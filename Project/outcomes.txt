@@ -1,3 +1,7 @@
 Progression outcomes:
 
 Progress: 120, 0, 0
+Progress: 120, 0, 0
+Retriever: 0, 120, 0
+Exclude: 0, 0, 120
+Exclude: 0, 0, 120

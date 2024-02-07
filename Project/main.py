@@ -100,11 +100,13 @@ while True:
             print('Total incorrect')
 
         # Only allowing 0, 20, 40, 60, 80, 100 and 120 to be entered
-        elif pass_credit not in range(0, 140, 20) or defer_credit not in range(0, 140, 20) or fail_credit not in range(0, 140, 20):
+        elif pass_credit not in range(0, 140, 20) or defer_credit not in range(0, 140, 20) or fail_credit not in range(
+                0, 140, 20):
             print('Out of range. Credits can only be in the interval [0,120].')
 
         # Asking the user if they want to enter another set of data
-        options = input("\nWould you like to enter another set of data?\nEnter 'y' for yes or 'q' to quit and view results: \n").lower()
+        options = input(
+            "\nWould you like to enter another set of data?\nEnter 'y' for yes or 'q' to quit and view results: \n").lower()
         if options == 'q':
             break
         elif options != 'y':
@@ -114,40 +116,63 @@ while True:
         print(e)
         print('Please enter the credit again.')
 
+
+# Horizontal Histogram:
+# Determine the maximum length of the category names
 # Horizontal Histogram:
 def h_histogram():
     print('-' * 30)
     print('Horizontal Histogram: ')
-    print(progression_outcome[0], progress_count, ':', '* ' * progress_count)
-    print(progression_outcome[1], trailer_count, ':', '* ' * trailer_count)
-    print(progression_outcome[2], retriever_count, ':', '* ' * retriever_count)
-    print(progression_outcome[3], exclude_count, ':', '* ' * exclude_count)
+    # Map outcome names to their respective counts
+    counts = {
+        'Progress': progress_count,
+        'Trailing': trailer_count,
+        'Retriever': retriever_count,
+        'Excluded': exclude_count
+    }
+    # Use the maximum outcome name length to align the histogram
+    max_length = max(len(name) for name in counts.keys())
+
+    for outcome in progression_outcome:
+        # Adjust the output based on the outcome name length
+        print(f"{outcome.ljust(max_length)} {counts[outcome]} :", '* ' * counts[outcome])
+
+    total_outcomes = sum(counts.values())
     print('\n')
-    print(progress_count + trailer_count + retriever_count + exclude_count, 'outcome(s) in total')
+    print(f"{total_outcomes} outcome(s) in total")
     print('-' * 30)
+
 
 h_histogram()
 print('\n')
 
-#Vertical Histogram:
-#v_histogram = Vertical Histogram function
-def v_histogram():
+
+# Vertical Histogram:
+def v_histogram(progress_count, trailer_count, retriever_count, exclude_count):
     print('-' * 45)
     print('Vertical Histogram:')
 
-    print(f'{progression_outcome[0]:>4} {progression_outcome[1]:>10} {progression_outcome[2]:>12} {progression_outcome[3]:>10}')
-    for progress in progress_result:
-        print(f'{progress:>4}')
-        for trailer in trailer_result:
-            print(f'{trailer:>15}')
-        for retriever in retriever_result:
-            print(f'{retriever:>28}')
-        for exclude in exclude_result:
-            print(f'{exclude:>40}')
-        print('\n')
-        print(progress_count + trailer_count + retriever_count + exclude_count, 'outcome(s) in total')
-        print('-' * 45)
-v_histogram()
+    # Calculate the maximum count to determine the height of the histogram
+    max_count = max(progress_count, trailer_count, retriever_count, exclude_count)
+
+    # Create a list of the counts to iterate over
+    counts = [progress_count, trailer_count, retriever_count, exclude_count]
+
+    # Print the header
+    print(f'{"Progress":>10} {"Trailing":>10} {"Retriever":>10} {"Excluded":>10}')
+
+    # Print each row of the histogram
+    for i in range(max_count, 0, -1):
+        for count in counts:
+            # Print an asterisk if the count is at least as large as the current row number
+            print(f'{"*":>10}' if count >= i else f'{" ":>10}', end='')
+        print()  # Move to the next line after printing all categories
+
+    print('-' * 45)
+
+
+# Call the function with the actual counts
+v_histogram(progress_count, trailer_count, retriever_count, exclude_count)
 print('\n')
 
 # Part 3 (List/Tuple/Dictionary)
