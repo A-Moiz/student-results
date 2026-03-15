@@ -137,7 +137,7 @@ cd your-repository-name
 
 ### 3. Run the program
 ```bash
-python progression_outcomes.py
+python main.py
 ```
 
 ---
