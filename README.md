@@ -127,7 +127,7 @@ This demonstrates basic **file writing and file reading operations in Python**.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/your-repository-name.git
+git clone https://github.com/A-Moiz/student-results
 ```
 
 ### 2. Navigate to the project directory
